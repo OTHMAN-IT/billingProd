@@ -1,0 +1,139 @@
+
+<div class="container">
+  <div class="row gutters">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="invoice-container">
+              <div class="invoice-header">
+                <!-- Row start -->
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class="custom-actions-btns mb-5">
+                      <a href="#" class="btn btn-primary">
+                        <i class="icon-download"></i> Download
+                      </a>
+                      <a href="#" class="btn btn-secondary">
+                        <i class="icon-printer"></i> Print
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row end -->
+                <!-- Row start -->
+                <div class="row gutters">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <a href="index.html" class="invoice-logo">
+                      {{billings.customer.name}} {{billings.customer.firstName}}
+                    </a>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <address class="text-right">
+                      Maxwell admin Inc, 45 NorthWest Street.<br>
+                      Sunrise Blvd, San Francisco.<br>
+                      00000 00000
+                    </address>
+                  </div>
+                </div>
+                <!-- Row end -->
+                <!-- Row start -->
+                <div class="row gutters">
+                  <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="invoice-details">
+                      <address>
+                        {{billings.customer.name}} {{billings.customer.firstName}}<br>
+                        {{billings.customer.adresse}}
+                      </address>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="invoice-details">
+                      <div class="invoice-num">
+                        <div>Invoice - {{billings.referenceB}}</div>
+                        <div>{{billings.billingDate}}</div>
+                      </div>
+                    </div>													
+                  </div>
+                </div>
+                <!-- Row end -->
+              </div>
+              <div class="invoice-body">
+                <!-- Row start -->
+                <div class="row gutters">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="table-responsive">
+                      <table class="table custom-table m-0">
+                        <thead>
+                          <tr>
+                            <th>Items</th>
+                            <th>Product ID</th>
+                            <th>Quantity</th>
+                            <th>Prix Unitaire</th>
+                            <th>Prix Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let b of billings.productItems">
+                            <td>
+                              {{b.productName}}
+                            </td>
+                            <td>{{b.productRef}}</td>
+                            <td>{{b.quantity}}</td>
+                            <td>{{b.price}}</td>
+                            <td tag="priceID">{{b.price * b.quantity}}</td>
+                          </tr>
+                         
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><b>Sub total</b></td>
+                            <td id="sum"></td>
+                          </tr>
+
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><b>Shipping</b></td>
+                            <td>100</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td colspan="2">
+                              <h5 class="text-success"><strong>Grand Total</strong></h5>
+                            </td>			
+                            <td>
+                            
+                              <h5 class="text-success"><strong>5150.99</strong></h5>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row end -->
+              </div>
+              <div class="invoice-footer">
+                Thank you for your Business.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+ function somme(){
+   var somme=0;
+        var rows = document.getElementsByTagName('priceID');
+        for(i=0; i<rows.length-1;i++){
+        somme=somme+rows[i];
+        }
+        document.getElementById('sum').innerHTML=somme;
+ }
+        
+  </script>
